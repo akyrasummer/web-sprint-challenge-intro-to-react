@@ -29,13 +29,18 @@ useEffect(() => {
   });
 }, []);
 
+const peopleWithPlanets = people.map(character => {
+  const homeworld = planets.find(planet => planet.id === character.homeworld)
+return { ...character, homeworld }
+})
+
   return (
     <div>
       <h2>Star Wars Characters</h2>
       <p>See the README of the project for instructions on completing this challenge</p>
       <div>
-      {people.length > 0 ? (
-        people.map(character => (
+      {peopleWithPlanets.length > 0 ? (
+        peopleWithPlanets.map(character => (
           <Character key={character.id} character={character} />
         ))
       ) : (
